@@ -360,10 +360,12 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.12f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/scrips/Elevator.cs"
 "Assets/scrips/Flag.cs"
+"Assets/scrips/muerte.cs"
 "Assets/scrips/MysticRotationAndFloat.cs"
 "Assets/scrips/PlayerMovementTutorial.cs"
 "Assets/scrips/ThirdPersonCam.cs"
 "Assets/scrips/trampoline.cs"
+"Assets/throwableFlag.cs"
 -langversion:9.0
 
 /deterministic

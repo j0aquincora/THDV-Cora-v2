@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Flag : MonoBehaviour
 {
+    [SerializeField] Transform initialSpawn;
     [Header("Flag")]
-    public GameObject flag;
-    //public GameObject throwFlag;
+    [SerializeField] GameObject flag;
+    [SerializeField] GameObject throwableFlag;
+    //GameObject lastFlag;
     GameObject nearestFlag;
     bool nearFlag;
     int flagAmmo = 0;
-    //private bool hasFlag;
+    
     [Header("Player")]
-    public Transform playerPos;
+    [SerializeField] Transform playerPos;
     [SerializeField] float throwForce;
+    [SerializeField] float throwForceUP;
     [SerializeField] Transform throwPoint;
+    [SerializeField] Transform throwPosition;
     private Vector3 respawnPos;
     PlayerMovementTutorial playerControl;
     
@@ -33,7 +37,7 @@ public class Flag : MonoBehaviour
         }
 
         //dropear en el lugar la bandera
-        if (Input.GetKeyDown(KeyCode.Q) && flagAmmo <= 1 && playerControl.grounded==true ) 
+        if (Input.GetKeyDown(KeyCode.Q) && flagAmmo >= 1 && playerControl.grounded==true ) 
         {
             //Debug.Log("toque la q pero con la flag puesta");
             DropFlag();         
@@ -54,17 +58,11 @@ public class Flag : MonoBehaviour
     {
         Debug.Log("toque la r");
         playerPos.position = respawnPos;
-        //Destroy(flag);
+        Destroy(nearestFlag);
+        respawnPos = initialSpawn.position; 
 
     }
-    private void DropFlag()
-    {
-        flagAmmo --;
-        respawnPos = playerPos.position;
-        Instantiate(flag, playerPos.position, playerPos.rotation);
-        //flag.transform.position = playerPos.position;
-        //flag.SetActive(true);
-    }
+   
     private void GrabFlag()
     {
         Debug.Log("toke la e");
@@ -72,19 +70,27 @@ public class Flag : MonoBehaviour
         Destroy(nearestFlag);
         flagAmmo++;        
     }
-    private void ThrowFlag()
+    private void DropFlag()
     {
-        // Instantiate the grenade at the throw point
-        GameObject throwFlag = Instantiate(flag, throwPoint.position, throwPoint.rotation);
-
-        // Get the Rigidbody component of the grenade
-        Rigidbody rb = throwFlag.GetComponent<Rigidbody>();
-
-        // Apply force to throw the grenade in the forward direction of the camera
-        Vector3 throwDirection = playerControl.orientation.position;
-        rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+        flagAmmo --;
+        respawnPos = playerPos.position;
+        Instantiate(flag, playerPos.position, playerPos.rotation);
+        
+        //flag.transform.position = playerPos.position;
+        //flag.SetActive(true);
     }
-    
+    private void ThrowFlag()
+    {    
+        GameObject projectile = Instantiate(throwableFlag, throwPoint.position, throwPosition.rotation);
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        // tema dirección
+        Vector3 forceDirection = throwPosition.transform.forward;
+        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwForceUP;
+
+        projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Flag"))

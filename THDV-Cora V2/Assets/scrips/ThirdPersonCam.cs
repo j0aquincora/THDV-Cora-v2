@@ -35,7 +35,7 @@ public class ThirdPersonCam : MonoBehaviour
     private void Update()
     {
         // switch styles
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
+        //if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
         //if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
         //if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
         
@@ -50,8 +50,7 @@ public class ThirdPersonCam : MonoBehaviour
             float verticalInput = Input.GetAxis("Vertical");
             Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-            if (inputDir != Vector3.zero)
-               // Debug.Log(inputDir);
+            if (inputDir != Vector3.zero)               
                 playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
 
@@ -63,17 +62,5 @@ public class ThirdPersonCam : MonoBehaviour
             playerObj.forward = dirToCombatLookAt.normalized;
         }*/
     }
-
-    private void SwitchCameraStyle(CameraStyle newStyle)
-    {
-        //combatCam.SetActive(false);
-        thirdPersonCam.SetActive(false);
-       // topDownCam.SetActive(false);
-
-        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
-       // if (newStyle == CameraStyle.Combat) combatCam.SetActive(true);
-       // if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
-
-        currentStyle = newStyle;
-    }
+    
 }

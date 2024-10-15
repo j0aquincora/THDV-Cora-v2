@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Flag
+  - muerte
   layers:
   - Default
   - TransparentFX
