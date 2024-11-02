@@ -14,5 +14,6 @@ public class muerte : MonoBehaviour
             Debug.Log("senti la muerte");
             playerPos.position = respawnPoint.position;
         }
+
     }
 }

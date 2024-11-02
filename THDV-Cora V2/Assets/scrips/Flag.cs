@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Flag : MonoBehaviour
 {
@@ -10,16 +11,17 @@ public class Flag : MonoBehaviour
     [SerializeField] GameObject throwableFlag;
     //GameObject lastFlag;
     GameObject nearestFlag;
+    GameObject lastThrowableFlag;
     bool nearFlag;
     int flagAmmo = 0;
-    
+    [SerializeField] TextMeshProUGUI flagCounterUI;
     [Header("Player")]
     [SerializeField] Transform playerPos;
     [SerializeField] float throwForce;
     [SerializeField] float throwForceUP;
     [SerializeField] Transform throwPoint;
     [SerializeField] Transform throwPosition;
-    private Vector3 respawnPos;
+    public Vector3 respawnPos;
     PlayerMovementTutorial playerControl;
     
     // Start is called before the first frame update
@@ -43,7 +45,7 @@ public class Flag : MonoBehaviour
             DropFlag();         
         }
         // lanzamiento d bandera
-        if (Input.GetKeyDown(KeyCode.Mouse0) && flagAmmo <= 1)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && flagAmmo >= 1)
         {
             ThrowFlag();
         }
@@ -59,6 +61,11 @@ public class Flag : MonoBehaviour
         Debug.Log("toque la r");
         playerPos.position = respawnPos;
         Destroy(nearestFlag);
+        if (lastThrowableFlag != null)
+        {
+            Destroy(lastThrowableFlag); // Destruye la última baliza lanzada
+            lastThrowableFlag = null; // Asegúrate de limpiar la referencia
+        }
         respawnPos = initialSpawn.position; 
 
     }
@@ -68,27 +75,47 @@ public class Flag : MonoBehaviour
         Debug.Log("toke la e");
         nearFlag = false;
         Destroy(nearestFlag);
-        flagAmmo++;        
+        flagAmmo++;
+        UpdateFlagHUD();
     }
     private void DropFlag()
     {
         flagAmmo --;
         respawnPos = playerPos.position;
         Instantiate(flag, playerPos.position, playerPos.rotation);
-        
+        UpdateFlagHUD();
+
         //flag.transform.position = playerPos.position;
         //flag.SetActive(true);
     }
     private void ThrowFlag()
-    {    
+    {
+        flagAmmo--;
         GameObject projectile = Instantiate(throwableFlag, throwPoint.position, throwPosition.rotation);
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        lastThrowableFlag = projectile;
+        Debug.Log("Instanciado throwableFlag en posición: " + throwPoint.position);
 
-        // tema dirección
+        // Intentar obtener el componente throwableFlag
+        throwableFlag throwableScript = projectile.GetComponent<throwableFlag>();
+
+        if (throwableScript != null)
+        {
+            Debug.Log("throwableFlag encontrado. Asignando flagControl.");
+            throwableScript.flagControl = this; // Asignamos esta instancia de Flag a flagControl
+        }
+        else
+        {
+            Debug.LogWarning("El componente throwableFlag no está presente en el objeto throwableFlag instanciado.");
+        }
+
+        // Agregar fuerza de lanzamiento
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
         Vector3 forceDirection = throwPosition.transform.forward;
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwForceUP;
-
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+
+        Debug.Log("Fuerza añadida al proyectil: " + forceToAdd);
+        UpdateFlagHUD();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -98,7 +125,9 @@ public class Flag : MonoBehaviour
             nearFlag = true;
             nearestFlag = other.gameObject;
         }
+        
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Flag"))
@@ -107,27 +136,38 @@ public class Flag : MonoBehaviour
             nearestFlag = other.gameObject;
         }
     }
-
-
-
-   /* 
-    METODO TRUCHO-NO SIRVE +
-    private void OnTriggerStay(Collider other)
+    private void UpdateFlagHUD()
     {
-        //pickup bandera
-        if (other.CompareTag("Flag"))
+        // Actualiza el texto en el HUD para mostrar la cantidad de banderas
+        if (flagCounterUI != null)
         {
-            Debug.Log("siento la bandera cerca");
-            if (Input.GetKeyDown(KeyCode.E) && hasFlag == false)
-            {
-                Debug.Log("toke la e");
-                Destroy(other.gameObject);
-                hasFlag = true;
-                //flag.SetActive(false);
-                Debug.Log(hasFlag);
-            }
-
+            flagCounterUI.text = "Balizas: " + flagAmmo;
+        }
+        else
+        {
+            Debug.LogWarning("No se ha asignado el componente flagCounterText en el inspector.");
         }
     }
-    */
+
+
+    /* 
+     METODO TRUCHO-NO SIRVE +
+     private void OnTriggerStay(Collider other)
+     {
+         //pickup bandera
+         if (other.CompareTag("Flag"))
+         {
+             Debug.Log("siento la bandera cerca");
+             if (Input.GetKeyDown(KeyCode.E) && hasFlag == false)
+             {
+                 Debug.Log("toke la e");
+                 Destroy(other.gameObject);
+                 hasFlag = true;
+                 //flag.SetActive(false);
+                 Debug.Log(hasFlag);
+             }
+
+         }
+     }
+     */
 }
