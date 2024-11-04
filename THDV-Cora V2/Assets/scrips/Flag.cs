@@ -32,6 +32,7 @@ public class Flag : MonoBehaviour
     }
     private void Update()
     {
+        if (Puasa.GameIsPaused) return;
         //grab d bandera
         if (Input.GetKeyDown(KeyCode.E) && nearFlag == true)
         {
@@ -114,7 +115,7 @@ public class Flag : MonoBehaviour
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwForceUP;
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
-        Debug.Log("Fuerza añadida al proyectil: " + forceToAdd);
+        //Debug.Log("Fuerza añadida al proyectil: " + forceToAdd);
         UpdateFlagHUD();
     }
 
@@ -138,10 +139,10 @@ public class Flag : MonoBehaviour
     }
     private void UpdateFlagHUD()
     {
-        // Actualiza el texto en el HUD para mostrar la cantidad de banderas
+        
         if (flagCounterUI != null)
         {
-            flagCounterUI.text = "Balizas: " + flagAmmo;
+            flagCounterUI.text = ": " + flagAmmo;
         }
         else
         {

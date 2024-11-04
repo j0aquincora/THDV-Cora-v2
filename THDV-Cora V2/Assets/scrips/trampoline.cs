@@ -7,11 +7,7 @@ public class trampoline : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private Rigidbody player;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
 

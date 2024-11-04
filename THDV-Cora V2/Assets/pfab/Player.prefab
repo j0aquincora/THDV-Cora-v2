@@ -220,8 +220,6 @@ MonoBehaviour:
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
-  walkSpeed: 0
-  sprintSpeed: 0
   jumpKey: 32
   playerHeight: 2
   ground:
@@ -243,12 +241,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpawn: {fileID: 0}
   flag: {fileID: 3604180658710330580, guid: a90a632815482394286162344de24964, type: 3}
-  throwableFlag: {fileID: 3485177846609680655, guid: e917b4f77a8e2544daeebbacebf57a61, type: 3}
+  throwableFlag: {fileID: 3604180658710330580, guid: 5e6b54f07a8fcc743a057382a2fafb90, type: 3}
+  flagCounterUI: {fileID: 0}
   playerPos: {fileID: 6472917010131435786}
   throwForce: 30
   throwForceUP: 20
   throwPoint: {fileID: 6273956968982778824}
   throwPosition: {fileID: 3954547821873669762}
+  respawnPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1808802556062586419
 MonoBehaviour:
   m_ObjectHideFlags: 0
