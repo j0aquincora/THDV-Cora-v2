@@ -6,6 +6,7 @@ using TMPro;
 public class Flag : MonoBehaviour
 {
     [SerializeField] Transform initialSpawn;
+    
     [Header("Flag")]
     [SerializeField] GameObject flag;
     [SerializeField] GameObject throwableFlag;
@@ -15,6 +16,7 @@ public class Flag : MonoBehaviour
     bool nearFlag;
     int flagAmmo = 0;
     [SerializeField] TextMeshProUGUI flagCounterUI;
+   
     [Header("Player")]
     [SerializeField] Transform playerPos;
     [SerializeField] float throwForce;
@@ -28,7 +30,8 @@ public class Flag : MonoBehaviour
     void Start()
     {
         playerControl = GetComponent<PlayerMovementTutorial>();        
-        nearFlag = false;       
+        nearFlag = false;
+        respawnPos = initialSpawn.position;
     }
     private void Update()
     {

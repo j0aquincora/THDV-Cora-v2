@@ -367,9 +367,8 @@
 "Assets/scrips/Puasa.cs"
 "Assets/scrips/ThirdPersonCam.cs"
 "Assets/scrips/throwableFlag.cs"
-"Assets/scrips/Trampolin.cs"
-"Assets/scrips/TrampolinDisplay.cs"
-"Assets/scrips/trampoline.cs"
+"Assets/SO/Trampolin.cs"
+"Assets/SO/TrampolinSO.cs"
 -langversion:9.0
 
 /deterministic
