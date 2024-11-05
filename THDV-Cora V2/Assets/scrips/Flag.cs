@@ -6,7 +6,8 @@ using TMPro;
 public class Flag : MonoBehaviour
 {
     [SerializeField] Transform initialSpawn;
-    
+    [SerializeField] GameObject winUI;
+
     [Header("Flag")]
     [SerializeField] GameObject flag;
     [SerializeField] GameObject throwableFlag;
@@ -31,6 +32,7 @@ public class Flag : MonoBehaviour
     {
         playerControl = GetComponent<PlayerMovementTutorial>();        
         nearFlag = false;
+        winUI.SetActive(false);
         respawnPos = initialSpawn.position;
     }
     private void Update()
@@ -58,7 +60,12 @@ public class Flag : MonoBehaviour
         {
             Respawn();
         }
-
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            flagAmmo++;
+            UpdateFlagHUD();
+               
+        }
     }
     private void Respawn()
     {
@@ -128,6 +135,10 @@ public class Flag : MonoBehaviour
         {
             nearFlag = true;
             nearestFlag = other.gameObject;
+        }
+        if (other.CompareTag("winZone"))
+        {
+            winUI.SetActive(true);
         }
         
     }
