@@ -6031,7 +6031,7 @@ Transform:
   m_GameObject: {fileID: 317651374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46, y: 5.96, z: -33}
+  m_LocalPosition: {x: 43.52, y: 7.8, z: -23.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19691,7 +19691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879615444}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2756825, y: -1e-45, z: -0, w: 0.96124876}
+  m_LocalRotation: {x: 0.2756825, y: -3e-45, z: 1e-45, w: 0.96124876}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19781,7 +19781,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 882296727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1408456540}
+        m_TargetAssemblyTypeName: Puasa, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &882296727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20860,8 +20872,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20159717, y: 0.000000023833893, z: -0.000000004905564, w: 0.9794685}
-  m_LocalPosition: {x: 46, y: 5.96, z: -33}
+  m_LocalRotation: {x: 0.20159717, y: -0.00000002383403, z: 0.0000000049055915, w: 0.9794685}
+  m_LocalPosition: {x: 43.52, y: 7.8, z: -23.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25231,7 +25243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116946740}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2200046, y: 0.000000008392404, z: -0.000000001892742, w: 0.97549886}
+  m_LocalRotation: {x: 0.22000463, y: -0.000000016784066, z: 0.0000000037853174, w: 0.97549886}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28443,18 +28455,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1408456540}
-        m_TargetAssemblyTypeName: Puasa, Assembly-CSharp
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1323514415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29386,7 +29386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362602725}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20159715, y: 0.000000018842345, z: -0.0000000038781884, w: 0.9794685}
+  m_LocalRotation: {x: 0.20159715, y: -0.000000018842519, z: 0.0000000038782244, w: 0.9794685}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -40650,13 +40650,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825862729}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0024374735, y: 0.41868958, z: -0.00593247, w: 0.9081068}
-  m_LocalPosition: {x: 227.33838, y: -12.807661, z: 428.03006}
+  m_LocalRotation: {x: -0.00018678089, y: 0.7519112, z: -0.006410959, w: 0.65923315}
+  m_LocalPosition: {x: 218.2, y: -12.807661, z: 403.6}
   m_LocalScale: {x: 2.1364753, y: 0.59341997, z: 1.6722074}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2088970091}
-  m_LocalEulerAnglesHint: {x: 0.538, y: 49.502, z: -0.5}
+  m_LocalEulerAnglesHint: {x: 0.538, y: 97.513, z: -0.5}
 --- !u!64 &1825862731
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -56484,15 +56484,15 @@ PrefabInstance:
       objectReference: {fileID: 1971091739}
     - target: {fileID: 6472917010131435786, guid: d23a22294f639154fa3b1efd191e3bc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46
+      value: 43.52
       objectReference: {fileID: 0}
     - target: {fileID: 6472917010131435786, guid: d23a22294f639154fa3b1efd191e3bc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.96
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 6472917010131435786, guid: d23a22294f639154fa3b1efd191e3bc4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25
+      value: -15.66
       objectReference: {fileID: 0}
     - target: {fileID: 6472917010131435786, guid: d23a22294f639154fa3b1efd191e3bc4, type: 3}
       propertyPath: m_LocalRotation.w

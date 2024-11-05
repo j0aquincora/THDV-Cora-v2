@@ -59,6 +59,7 @@ public class Flag : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Respawn();
+            distroi();
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -71,16 +72,21 @@ public class Flag : MonoBehaviour
     {
         Debug.Log("toque la r");
         playerPos.position = respawnPos;
+        
+        respawnPos = initialSpawn.position; 
+
+    }
+    private void distroi()
+    {
         Destroy(nearestFlag);
         if (lastThrowableFlag != null)
         {
             Destroy(lastThrowableFlag); // Destruye la última baliza lanzada
             lastThrowableFlag = null; // Asegúrate de limpiar la referencia
         }
-        respawnPos = initialSpawn.position; 
 
     }
-   
+
     private void GrabFlag()
     {
         Debug.Log("toke la e");
